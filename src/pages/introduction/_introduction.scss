@@ -1,0 +1,231 @@
+.introduction {
+    .watch {
+        padding: 0 14px;
+        margin-bottom: 30px;
+
+        h1 {
+            font-weight: 700;
+            font-size: 21px;
+            line-height: 38px;
+            text-align: center;
+
+            span {
+                color: $goldColor;
+            }
+        }
+    }
+
+    .p-o-x {
+        margin-bottom: 50px;
+
+        .smart-contracts {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
+            padding: 0 14px;
+
+            span {
+                color: $blueColor;
+            }
+        }
+
+        .img {
+            padding: 0 40px;
+            @include flex(center, center, row);
+            margin-top: 20px;
+        }
+    }
+
+    .clarity-bitcoin-library {
+        margin-bottom: 30px;
+
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 26px;
+            padding: 0 14px;
+
+            span {
+                color: $blueColor;
+            }
+        }
+
+        .grey-box {
+            width: 90%;
+            margin: 20px auto 0 auto;
+            height: 80px;
+            background: rgba(241, 241, 241, 1);
+            @include flex(center, center, row);
+            border-left: 10px solid #CCCCCC;
+            padding: 0 1rem;
+
+            h3 {
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 22px;
+            }
+        }
+    }
+
+    .merkle-proof {
+        padding-bottom: 80px;
+
+        p {
+            font-size: 16px;
+            padding: 0 14px;
+            margin-bottom: 40px;
+        }
+
+        .img {
+            width: 90%;
+            margin: 70px auto 0 auto;
+        }
+    }
+}
+
+
+@include for-smallest-phones {
+    .introduction {
+        .watch {
+            h1 {
+                font-size: 19px;
+            }
+        }
+
+        .p-o-x {
+            .smart-contracts {
+                font-size: 14px;
+            }
+        }
+
+        .clarity-bitcoin-library {
+            p {
+                font-size: 14px;
+            }
+
+            .grey-box {
+                height: 70px;
+            }
+        }
+
+        .merkle-proof {
+            p {
+                font-size: 14px;
+            }
+
+            .img {
+                width: 90%;
+            }
+        }
+    }
+}
+
+@include for-phone-only {}
+
+@include for-tablet-potrait-up {
+    .introduction {
+        .watch {
+            padding: 0 40px;
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+
+        .p-o-x {
+            .smart-contracts {
+                font-size: 22px;
+                line-height: 36px;
+                padding: 0 40px;
+            }
+
+            .img {
+                padding: 0 120px;
+            }
+        }
+
+        .clarity-bitcoin-library {
+            p {
+                font-size: 22px;
+                line-height: 36px;
+                padding: 0 40px;
+            }
+        }
+
+        .merkle-proof {
+            p {
+                font-size: 22px;
+                padding: 0 40px;
+            }
+
+            .img {
+                width: 80%;
+                margin: 20px auto 0 auto;
+            }
+        }
+    }
+}
+
+@include for-tablet-landscape-up {}
+
+@include for-desktop-up {
+    .introduction {
+        .watch {
+            padding: 0 210px;
+
+            h1 {
+                font-size: 38px;
+                line-height: 106px;
+            }
+        }
+
+        .p-o-x {
+            .smart-contracts {
+                font-size: 26px;
+                padding: 0 80px;
+            }
+
+            .img {
+                padding: 0 130px;
+
+                img {
+                    width: 60%;
+                    height: 100%;
+                }
+            }
+        }
+
+        .clarity-bitcoin-library {
+            margin-bottom: 60px;
+
+            p {
+                font-size: 26px;
+                padding: 0 80px;
+            }
+
+            .grey-box {
+                width: 80%;
+                height: 80px;
+
+                h3 {
+                    font-size: 21px;
+                    line-height: 35px;
+                }
+            }
+        }
+
+        .merkle-proof {
+            p {
+                font-size: 26px;
+                padding: 0 80px;
+            }
+
+            .img {
+                width: 60%;
+                margin: 20px auto 0 auto;
+            }
+        }
+    }
+}
+
+@include for-big-desktop-up {}

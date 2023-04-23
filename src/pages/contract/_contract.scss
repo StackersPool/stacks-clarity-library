@@ -1,0 +1,454 @@
+.contract {
+    .title {
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 56px;
+        color: #000000;
+        text-align: center;
+
+        span {
+            color: rgba(203, 59, 75, 1);
+        }
+    }
+
+    .clarity-smart-contract {
+        position: relative;
+        height: 300px;
+
+        h5 {
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 22px;
+            text-align: center;
+            color: #CA704E;
+            position: absolute;
+            width: 130px;
+            left: 33%;
+            top: 20%;
+        }
+    }
+
+    .clarity-stacks {
+        padding: 0 14px;
+        margin-bottom: 50px;
+        margin-top: 40px;
+
+        p {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 31px;
+            margin-bottom: 30px;
+
+            span {
+                color: $blueColor;
+            }
+        }
+
+        .img {
+            width: 90%;
+            margin: auto;
+        }
+    }
+
+    .submitting-transc {
+        padding: 0 14px;
+        margin-bottom: 50px;
+
+        h4 {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 24px;
+
+            a {
+                color: $blueColor;
+            }
+        }
+    }
+
+    .contract-methods {
+        padding: 0 14px;
+        margin: 20px 0 50px 0;
+
+        h4 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            font-size: 400;
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 24px;
+
+            li {
+                font-size: 14px;
+                line-height: 23px;
+            }
+        }
+
+        ol {
+            padding-left: 14px;
+            margin: 20px 0;
+
+            li {
+                margin: 10px 0;
+                font-size: 14px;
+                line-height: 23px;
+            }
+        }
+
+    }
+
+    .contract-uses {
+        margin: 20px 0 50px 0;
+        padding: 0 14px;
+
+        h4 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .grey-box {
+            width: 90%;
+            margin: 20px auto 0 auto;
+            height: 80px;
+            background: rgba(241, 241, 241, 1);
+            @include flex(center, center, row);
+            border-left: 10px solid #CCCCCC;
+            padding: 0 1rem;
+
+            h3 {
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 22px;
+            }
+        }
+
+        .more-examples {
+            margin: 40px 0;
+
+            h4 {
+                font-weight: 500;
+            }
+        }
+
+    }
+
+}
+
+
+@include for-smallest-phones {
+    .contract {
+        .clarity-smart-contract {
+            h5 {
+                font-size: 10px;
+                width: 100px;
+                left: 33%;
+                top: 80px;
+                line-height: 16px;
+            }
+        }
+
+        .clarity-stacks {
+            p {
+                font-size: 16px;
+            }
+
+            .img {
+                width: 80%;
+            }
+        }
+
+        .submitting-transc {
+            h4 {
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+        }
+
+        .contract-methods {
+            h4 {
+                font-size: 15px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            ul {
+                li {
+                    font-size: 12px;
+                }
+            }
+
+            ol {
+                li {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .contract-uses {
+            padding: 0 14px;
+
+            p {
+                font-size: 12px;
+                line-height: 24px;
+            }
+
+            .grey-box {
+                width: 95%;
+                height: 70px;
+
+                h3 {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+@include for-phone-only {
+    .contract {
+        .title {
+            font-size: 22px;
+        }
+
+        .clarity-smart-contract {
+            height: 400px;
+
+            h5 {
+                font-size: 13px;
+                width: 120px;
+                left: 33%;
+                top: 30%;
+            }
+        }
+
+        .clarity-stacks {
+            p {
+                font-size: 17px;
+            }
+
+            .img {
+                width: 85%;
+            }
+        }
+    }
+}
+
+@include for-tablet-potrait-up {
+    .contract {
+        .title {
+            font-size: 22px;
+            line-height: 56px;
+        }
+
+        .clarity-smart-contract {
+            height: 550px;
+
+            h5 {
+                font-size: 18px;
+                width: 160px;
+                left: 38.5%;
+                top: 26%;
+            }
+        }
+
+        .clarity-stacks {
+            padding: 0 40px;
+
+            p {
+                font-size: 20px;
+            }
+
+            .img {
+                width: 70%;
+            }
+        }
+
+        .submitting-transc {
+            padding: 0 40px;
+
+            h4 {
+                font-size: 22px;
+            }
+
+            p {
+                font-size: 18px;
+                line-height: 32px;
+            }
+        }
+
+        .contract-methods {
+            padding: 0 40px;
+
+            h4 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            ul {
+                li {
+                    font-size: 16px;
+                }
+            }
+
+            ol {
+                li {
+                    font-size: 16px;
+                }
+            }
+
+        }
+
+        .contract-uses {
+            padding: 0 40px;
+
+            h4 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+                margin-bottom: 30px;
+                line-height: 32px;
+            }
+
+            .grey-box {
+                h3 {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+@include for-tablet-landscape-up {}
+
+@include for-desktop-up {
+    .contract {
+        .title {
+            font-size: 45px;
+            line-height: 56px;
+        }
+
+        .clarity-smart-contract {
+            height: 550px;
+            @include flex(center, center, row);
+
+            img {
+                width: 50%;
+                margin: auto;
+            }
+
+            h5 {
+                font-size: 18px;
+                width: 160px;
+                left: 43.5%;
+                top: 28%;
+            }
+        }
+
+        .clarity-stacks {
+            padding: 0 80px;
+
+            p {
+                font-size: 25px;
+            }
+
+            .img {
+                width: 50%;
+                margin: auto;
+            }
+        }
+
+        .submitting-transc {
+            padding: 0 80px;
+
+            h4 {
+                font-size: 26px;
+            }
+
+            p {
+                font-size: 20px;
+                line-height: 34px;
+            }
+        }
+
+        .contract-methods {
+            padding: 0 80px;
+            margin: 20px 0 50px 0;
+
+            h4 {
+                font-size: 22px;
+            }
+
+            p {
+                font-size: 18px;
+            }
+
+            ul {
+                li {
+                    font-size: 18px;
+                }
+            }
+
+            ol {
+                padding-left: 16px;
+
+                li {
+                    font-size: 18px;
+                    margin: 20px 0;
+                }
+            }
+
+        }
+
+        .contract-uses {
+            padding: 0 80px;
+
+            h4 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 18px;
+                font-weight: 400;
+            }
+
+            .grey-box {
+                width: 80%;
+
+                h3 {
+                    font-size: 18px;
+                }
+            }
+        }
+
+    }
+
+
+}
+
+@include for-big-desktop-up {}

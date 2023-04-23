@@ -1,0 +1,105 @@
+nav {
+    padding: 20px 14px;
+    @include flex(center, center, row);
+
+    .logo {
+        h2 {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 29px;
+            color: #000000;
+
+            span {
+                color: $blueColor;
+            }
+        }
+    }
+
+    .buy-btn {
+        button {
+            background: conic-gradient(from 249.98deg at 71.96% 167.71%, #5546FF 0deg, rgba(85, 70, 255, 0) 360deg);
+            border-radius: 38px;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 20px;
+            color: #FFFFFF;
+            padding: 8px 20px;
+        }
+    }
+}
+
+@include for-smallest-phones {
+    nav {
+        padding: 20px 8px;
+
+        .logo {
+            h2 {
+                font-size: 14px
+            }
+        }
+
+        .buy-btn {
+            button {
+                font-size: 10px;
+                line-height: 20px;
+                padding: 4px 10px;
+            }
+        }
+    }
+}
+
+@include for-phone-only {
+    nav {
+        padding: 20px 12px;
+
+        .buy-btn {
+            button {
+                font-size: 12px;
+                line-height: 20px;
+                padding: 5px 9px;
+            }
+        }
+    }
+}
+
+@include for-tablet-potrait-up {
+    nav {
+        padding: 40px 40px 10px 40px;
+
+        .logo {
+            h2 {
+                font-size: 28px;
+            }
+        }
+
+        .buy-btn {
+            button {
+                font-size: 20px;
+                padding: 10px 24px;
+            }
+        }
+    }
+}
+
+@include for-tablet-landscape-up {}
+
+@include for-desktop-up {
+    nav {
+        padding: 70px 70px 10px 70px;
+
+        .logo {
+            h2 {
+                font-size: 36px;
+                line-height: 59px;
+            }
+        }
+
+        .buy-btn {
+            button {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+@include for-big-desktop-up {}

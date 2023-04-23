@@ -1,0 +1,50 @@
+// MEDIA QUERIES
+@mixin for-smallest-phones {
+    @media screen and (max-width: 350px) {
+        @content;
+    }
+}
+
+@mixin for-phone-only {
+    @media screen and (min-width: 351px) and (max-width: 400px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-potrait-up {
+    @media screen and (min-width: 600px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media screen and (min-width: 900px) {
+        @content;
+    }
+}
+
+@mixin for-desktop-up {
+    @media screen and (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin for-big-desktop-up {
+    @media screen and (min-width: 1800px) {
+        @content;
+    }
+}
+
+
+@mixin flex($align, $justify, $direction) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $direction;
+}
+
+@mixin grid($num, $width, $gap) {
+    display: grid;
+    grid-template-columns: repeat($num, $width);
+    grid-gap: $gap;
+}

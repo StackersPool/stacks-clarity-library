@@ -1,0 +1,79 @@
+.page-navigation {
+    @include flex(center, space-between, row);
+    padding: 0 10px;
+    width: 80%;
+    margin-bottom: 60px;
+
+    a {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 33px;
+        color: #DBDBDB;
+
+        &.active {
+            font-size: 16px;
+            line-height: 40px;
+            color: #000000;
+            border-bottom: 4px solid $goldColor;
+        }
+    }
+}
+
+@include for-smallest-phones {
+    .page-navigation {
+        padding: 0 10px;
+        width: 90%;
+
+        a {
+            font-size: 12px;
+            line-height: 33px;
+
+            &.active {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@include for-phone-only {
+    .page-navigation {
+        width: 85%;
+    }
+
+}
+
+@include for-tablet-potrait-up {
+    .page-navigation {
+        padding: 0 40px;
+        width: 60%;
+
+        a {
+            font-size: 18px;
+
+            &.active {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+@include for-tablet-landscape-up {}
+
+@include for-desktop-up {
+    .page-navigation {
+        padding: 0 80px;
+        width: 45%;
+
+        a {
+            font-size: 20px;
+            line-height: 33px;
+
+            &.active {
+                font-size: 24px;
+                line-height: 40px;
+            }
+        }
+    }
+}
+
+@include for-big-desktop-up {}
