@@ -55,71 +55,86 @@ export const wallet = {
     },
     transaction: {
         getWasTxMined: async (btc_txID) => {
+            let result;
             // Get BTC txid info
-            const txDetails = (await axios.get(`https://btc.getblock.io/rest/tx/1015a8d3-1f41-4d2b-9bdc-0f4c917ae94d/${btc_txID}.json`)).data;
-            // Gets block info
-            const block = (await axios.get(`https://btc.getblock.io/rest/block/1015a8d3-1f41-4d2b-9bdc-0f4c917ae94d/${txDetails.blockhash}.json`)).data;
-
-            console.log({ txDetails });
-            console.log({ block });
-
-            // Smart contract call args value construct
-            const txIndex = block.tx
-                .map((tx) => tx.txid)
-                .findIndex((t) => t === btc_txID);
-            console.log("tx index:", txIndex);
-
-            const headerCV = tupleCV({
-                version: bufferCV(intToBytes(block.version, false, 4).reverse()),
-                parent: bufferCV(hexToBytes(block.previousblockhash).reverse()),
-                "merkle-root": bufferCV(hexToBytes(block.merkleroot).reverse()),
-                timestamp: bufferCV(intToBytes(block.time, false, 4).reverse()),
-                nbits: bufferCV(hexToBytes(block.bits).reverse()),
-                nonce: bufferCV(intToBytes(block.nonce, false, 4).reverse()),
-            });
-
-            let options = {
-                contractAddress: "SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9",
-                contractName: "clarity-bitcoin-helper",
-                functionName: "concat-header",
-                functionArgs: [headerCV],
-                network: new StacksMainnet(),
-                senderAddress: userSession.loadUserData().profile.stxAddress.mainnet,
-            };
-
-            const headerBuffCV = await callReadOnlyFunction(options);
-
-            const merkleTree = new MerkleTree(
-                block.tx.map((t) => hexReverse(t.txid)),
-                hexStringBtcHash(sha256)
-            );
-            const proofElements = merkleTree.getProofElements(txIndex);
-            const treeDepth = merkleTree.getTreeDepth();
-
-            options = {
-                contractAddress: "SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9",
-                contractName: "clarity-bitcoin-lib-v2",
-                functionName: "was-tx-mined-compact",
-                functionArgs: [
-                    uintCV(block.height),
-                    bufferCV(hexToBytes(txDetails.hex)),
-                    headerBuffCV,
-                    tupleCV({
-                        "tx-index": uintCV(txIndex),
-                        hashes: listCV(proofElements.map((pe) => bufferCV(hexToBytes(pe)))),
-                        "tree-depth": uintCV(treeDepth),
-                    }),
-                ],
-                network: new StacksMainnet(),
-                senderAddress: userSession.loadUserData().profile.stxAddress.mainnet,
-            };
-
             try {
-                const result = await callReadOnlyFunction(options);
-                console.log("was-tx-mined", cvToString(result));
-            } catch (error) {
-                console.log(error);
+                await axios.get(`https://btc.getblock.io/rest/tx/1015a8d3-1f41-4d2b-9bdc-0f4c917ae94d/${btc_txID}.json`)
+                    .then(async ({ status, data: { blockhash, hex } }) => {
+                        console.log('TxInfo', status)
+                        try {
+                            // Gets block info
+                            await axios.get(`https://btc.getblock.io/rest/block/1015a8d3-1f41-4d2b-9bdc-0f4c917ae94d/${blockhash}.json`)
+                                .then(async ({ status, data: { tx, version, previousblockhash, merkleroot, time, bits, nonce, height } }) => {
+                                    console.log('BlockInfo', status)
+                                    // Smart contract call args value construct
+                                    const txIndex = tx
+                                        .map((tx) => tx.txid)
+                                        .findIndex((t) => t === btc_txID);
+
+                                    const headerCV = tupleCV({
+                                        version: bufferCV(intToBytes(version, false, 4).reverse()),
+                                        parent: bufferCV(hexToBytes(previousblockhash).reverse()),
+                                        "merkle-root": bufferCV(hexToBytes(merkleroot).reverse()),
+                                        timestamp: bufferCV(intToBytes(time, false, 4).reverse()),
+                                        nbits: bufferCV(hexToBytes(bits).reverse()),
+                                        nonce: bufferCV(intToBytes(nonce, false, 4).reverse()),
+                                    });
+
+                                    let options = {
+                                        contractAddress: "SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9",
+                                        contractName: "clarity-bitcoin-helper",
+                                        functionName: "concat-header",
+                                        functionArgs: [headerCV],
+                                        network: new StacksMainnet(),
+                                        senderAddress: userSession.loadUserData().profile.stxAddress.mainnet,
+                                    };
+
+                                    const headerBuffCV = await callReadOnlyFunction(options);
+
+                                    const merkleTree = new MerkleTree(
+                                        tx.map((t) => hexReverse(t.txid)),
+                                        hexStringBtcHash(sha256)
+                                    );
+                                    const proofElements = merkleTree.getProofElements(txIndex);
+                                    const treeDepth = merkleTree.getTreeDepth();
+
+                                    options = {
+                                        contractAddress: "SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9",
+                                        contractName: "clarity-bitcoin-lib-v2",
+                                        functionName: "was-tx-mined-compact",
+                                        functionArgs: [
+                                            uintCV(height),
+                                            bufferCV(hexToBytes(hex)),
+                                            headerBuffCV,
+                                            tupleCV({
+                                                "tx-index": uintCV(txIndex),
+                                                hashes: listCV(proofElements.map((pe) => bufferCV(hexToBytes(pe)))),
+                                                "tree-depth": uintCV(treeDepth),
+                                            }),
+                                        ],
+                                        network: new StacksMainnet(),
+                                        senderAddress: userSession.loadUserData().profile.stxAddress.mainnet,
+                                    };
+
+                                    try {
+                                        const contractResult = await callReadOnlyFunction(options);
+                                        result = { status: 200, result: cvToString(contractResult) };
+                                    } catch (e) {
+                                        const { message, response: { status } } = e;
+                                        result = { status: status, result: message };
+                                    }
+                                })
+                        } catch (e) {
+                            const { message, response: { status } } = e;
+                            result = { status: status, result: message };
+                        }
+
+                    })
+            } catch (e) {
+                const { message, response: { status } } = e;
+                result = { status: status, result: message };
             }
+            return result;
         }
     }
 }

@@ -4,23 +4,45 @@ import { userSession, wallet } from '../../store/wallet';
 
 
 const Searchbar = () => {
+  const [result, setResult] = React.useState(null);
+  const [textChanged, setTextChanged] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+
   const handleTextChange = (e) => {
     const input = e.target.value;
     const inputLength = String(input).length;
-    if (inputLength === 64) {
-      wallet.transaction.getWasTxMined(input);
+    setTextChanged(true);
+    if (inputLength > 0) {
+      wallet.transaction.getWasTxMined(input).then((data) => {
+        setResult(data);
+        setLoading(false)
+      });
+    } else {
+      setTextChanged(false);
+      setLoading(false)
     }
   }
 
+  React.useEffect(() => {
+
+  }, [loading, result, textChanged])
+
   return (
-    <div className='searchbar'>
-      {console.log(userSession.isUserSignedIn())}
-      {
-        userSession.isUserSignedIn()
-          ? <input type='text' placeholder='Search: Transactions , block, address...' onInput={handleTextChange} />
-          : <div className="connect"><a onClick={() => wallet.login()}>Connect</a></div>
+    <div className='searchbarcontainer'>
+      <div className='searchbar'>
+        {
+          userSession.isUserSignedIn()
+            ? <input type='text' placeholder='Search: Transactions , block, address...' onInput={handleTextChange} />
+            : <div className="connect"><a onClick={() => wallet.login()}>Connect</a></div>
+        }
+      </div>
+      {result && textChanged &&
+        <div className='result'>
+          <small><p>Status: {result.status}</p></small>
+          <small><p>Result: {result.result}</p></small>
+        </div>
       }
-      {/* <button onClick={() => wallet.logout()}>Disconnect</button> */}
+      {loading && <p>Loadding...</p>}
     </div>
   );
 };

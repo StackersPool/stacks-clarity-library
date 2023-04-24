@@ -1,6 +1,7 @@
 .searchbar {
     @include flex(center, center, row);
-    margin: 40px 0;
+    margin-top: 40px;
+    margin-bottom: 10px;
     padding: 0 14px;
 
     input {
@@ -196,4 +197,20 @@
     background: #5546FF;
     box-shadow: 0 0 5px #5546FF, 0 0 15px #5546FF, 0 0 30px #5546FF,
         0 0 60px #5546FF;
+}
+
+p {
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 10px;
+}
+
+.result {
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+}
+
+.searchbarcontainer {
+    margin-bottom: 20px;
 }
