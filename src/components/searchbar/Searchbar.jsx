@@ -20,6 +20,7 @@ const Searchbar = () => {
       });
     } else {
       setTextChanged(false);
+      setLoading(false);
     }
   }
 
