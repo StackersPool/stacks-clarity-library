@@ -12,6 +12,7 @@ const Searchbar = () => {
     const input = e.target.value;
     const inputLength = String(input).length;
     setTextChanged(true);
+    setLoading(true);
     if (inputLength > 0) {
       wallet.transaction.getWasTxMined(input).then((data) => {
         setResult(data);
@@ -19,7 +20,6 @@ const Searchbar = () => {
       });
     } else {
       setTextChanged(false);
-      setLoading(false)
     }
   }
 
@@ -42,7 +42,7 @@ const Searchbar = () => {
           <small><p>Result: {result.result}</p></small>
         </div>
       }
-      {loading && <p>Loadding...</p>}
+      {loading && <p className='loadbar'>Loadding...</p>}
     </div>
   );
 };
