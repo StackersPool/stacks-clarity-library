@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import bitcoinVerification from '../../assests/bitcoin-verification.png';
 import merkleTree from '../../assests/merkle-tree.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HowItWorks = () => {
+  useEffect(() => {
+    AOS.init({
+      offset: 200,
+      duration: 600,
+      easing: 'ease-in-out',
+    });
+  }, []);
+
   return (
     <main className='how-it-works'>
       <h1 className='title'>
@@ -10,9 +20,13 @@ const HowItWorks = () => {
       </h1>
       <div className='bitcoin-proofs'>
         <div className='img'>
-          <img src={bitcoinVerification} alt='how to verify bitcoin proofs' />
+          <img
+            src={bitcoinVerification}
+            alt='how to verify bitcoin proofs'
+            data-aos='fade-up'
+          />
         </div>
-        <p>
+        <p data-aos='fade-right'>
           <strong>Bitcoin transaction</strong> data is pulled from a post-segwit
           Bitcoin node using the RPC endpoint. The node must be an archive node.
           Initially, it assumes that it is using a GetBlock node, since they
@@ -20,11 +34,11 @@ const HowItWorks = () => {
         </p>
       </div>
 
-      <div className='merkle-proof'>
+      <div className='merkle-proof' data-aos='fade-left'>
         <div className='img'>
           <img src={merkleTree} alt='merkle tree node' />
         </div>
-        <p>
+        <p data-aos='fade-right'>
           A <span>merkle proof</span> for the transaction is created using the
           <span> merkle tree</span> node module. In the future, it may be
           possible to eliminate this dependency by calling the{' '}
@@ -32,20 +46,20 @@ const HowItWorks = () => {
           endpoint of<strong> Bitcoin RPC</strong>.
         </p>
         <br />
-        <p>
+        <p data-aos='fade-right'>
           In order for the Stacks network to verify a proof, it needs to know
           the Stacks block height that corresponds to the block where the
           transaction of interest was recorded on the Bitcoin network.
         </p>
         <br />
-        <p>
+        <p data-aos='fade-right'>
           The hash values of Bitcoin block headers are available in Clarity
           contracts via <strong>get-burn-block-info</strong> ?. Then, it remains
           to just verify hashes of merkle trees, transactions and block headers.
           There are two main methods which are:
         </p>
         <br />
-        <ol>
+        <ol data-aos='fade-up'>
           <li>
             <strong>Was TX Mined:</strong> This is a top-level verification code
             to determine whether or not a bitcoin transaction was mined in a
@@ -71,7 +85,7 @@ const HowItWorks = () => {
             from 0) .
           </p>
           <br />
-          <p>
+          <p data-aos='fade-left'>
             The first element in hashes must be the given transaction's sibling
             transaction's ID. This and the given transaction's txid are hashed
             to calculate the parent hash in the merkle tree, which is then
@@ -81,12 +95,12 @@ const HowItWorks = () => {
             pair of siblings.
           </p>
           <br />
-          <li>
+          <li data-aos='fade-right'>
             <strong>Parse Block Header</strong>: This method parses a bitcoin
             block header and returns a tuple structured as followed on success,
             the tuple data includes:
           </li>
-          <ul>
+          <ul data-aos='fade-up'>
             <li>Block Version</li>
             <li>Parent Block Hash</li>
             <li>Merkle root for all this block's transactions</li>
@@ -96,8 +110,10 @@ const HowItWorks = () => {
           </ul>
         </ol>
         <br />
-        <h4>Applications that use the clarity bitcoin library:</h4>
-        <p>
+        <h4 data-aos='fade-right'>
+          Applications that use the clarity bitcoin library:
+        </h4>
+        <p data-aos='fade-left'>
           <strong>CATARAMAN SWAP</strong>{' '}
           <a
             href='https://docs.catamaranswaps.org/en/latest/'
@@ -108,7 +124,7 @@ const HowItWorks = () => {
           </a>{' '}
           catamaran swap is using the concat method.
         </p>
-        <h3>
+        <h3 data-aos='fade-left'>
           MAGIC BRIDGE (LINK AND ABOUT ) is using the parse method <br /> ZEST
           PROTOCOL(LINK AND ABOUT )
         </h3>

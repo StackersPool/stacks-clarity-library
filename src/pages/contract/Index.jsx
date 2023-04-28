@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import claritySmartContract from '../../assests/clarity-smart-contract.png';
 import clarityStacks from '../../assests/clarity-stacks.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Contract = () => {
+  useEffect(() => {
+    AOS.init({
+      offset: 200,
+      duration: 600,
+      easing: 'ease-in-out',
+    });
+  }, []);
+
   return (
     <main className='contract'>
       <h1 className='title'>
@@ -11,10 +21,14 @@ const Contract = () => {
 
       <div className='clarity-smart-contract'>
         <h5>Clarity smart Contract</h5>
-        <img src={claritySmartContract} alt='clarity smart contract' />
+        <img
+          src={claritySmartContract}
+          alt='clarity smart contract'
+          data-aos='fade-up'
+        />
       </div>
 
-      <div className='clarity-stacks'>
+      <div className='clarity-stacks' data-aos='fade-right'>
         <p>
           <strong>The contact</strong> is made with the{' '}
           <span>clarity language</span> of the stacks blockchain and contains
@@ -27,7 +41,7 @@ const Contract = () => {
         </div>
       </div>
 
-      <div className='submitting-transc'>
+      <div className='submitting-transc' data-aos='fade-left'>
         <h4>Submitting Bitcoin transactions to the stacks network</h4>
         <p>
           Once a proof is assembled, the entirety of the proof is sent to a
@@ -45,7 +59,7 @@ const Contract = () => {
         </p>
       </div>
 
-      <div className='contract-methods'>
+      <div className='contract-methods' data-aos='fade-right'>
         <h4>Methods used in the contract includes:</h4>
         <p>
           There are two ways to verify the btc tx in a contract and use the
@@ -88,7 +102,7 @@ const Contract = () => {
         </ul>
       </div>
 
-      <div className='contract-uses'>
+      <div className='contract-uses' data-aos='fade-left'>
         <h4>What can this Contract be used for?</h4>
         <p>
           Once it was confirmed that a bitcoin transaction was confirmed,
@@ -109,7 +123,7 @@ const Contract = () => {
           </h3>
         </div>
 
-        <div className='more-examples'>
+        <div className='more-examples' data-aos='fade-right'>
           <h4>
             <strong>More examples:</strong>
           </h4>
