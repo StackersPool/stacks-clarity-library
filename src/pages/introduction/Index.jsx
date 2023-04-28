@@ -10,7 +10,7 @@ const Introduction = () => {
     AOS.init({
       offset: 200,
       duration: 600,
-      easing: 'ease-in-out',
+      easing: 'linear',
     });
   }, []);
 
@@ -35,7 +35,7 @@ const Introduction = () => {
         </div>
       </article>
 
-      <article className='clarity-bitcoin-library' data-aos='fade-left'>
+      <article className='clarity-bitcoin-library' data-aos='fade-right'>
         <p>
           The{' '}
           <a

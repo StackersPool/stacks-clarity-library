@@ -9,7 +9,7 @@ const Contract = () => {
     AOS.init({
       offset: 200,
       duration: 600,
-      easing: 'ease-in-out',
+      easing: 'linear',
     });
   }, []);
 
@@ -41,7 +41,7 @@ const Contract = () => {
         </div>
       </div>
 
-      <div className='submitting-transc' data-aos='fade-left'>
+      <div className='submitting-transc' data-aos='fade-right'>
         <h4>Submitting Bitcoin transactions to the stacks network</h4>
         <p>
           Once a proof is assembled, the entirety of the proof is sent to a
@@ -102,7 +102,7 @@ const Contract = () => {
         </ul>
       </div>
 
-      <div className='contract-uses' data-aos='fade-left'>
+      <div className='contract-uses' data-aos='fade-right'>
         <h4>What can this Contract be used for?</h4>
         <p>
           Once it was confirmed that a bitcoin transaction was confirmed,

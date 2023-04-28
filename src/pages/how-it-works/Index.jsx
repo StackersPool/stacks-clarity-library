@@ -9,7 +9,7 @@ const HowItWorks = () => {
     AOS.init({
       offset: 200,
       duration: 600,
-      easing: 'ease-in-out',
+      easing: 'linear',
     });
   }, []);
 
@@ -34,7 +34,7 @@ const HowItWorks = () => {
         </p>
       </div>
 
-      <div className='merkle-proof' data-aos='fade-left'>
+      <div className='merkle-proof' data-aos='fade-right'>
         <div className='img'>
           <img src={merkleTree} alt='merkle tree node' />
         </div>
@@ -85,7 +85,7 @@ const HowItWorks = () => {
             from 0) .
           </p>
           <br />
-          <p data-aos='fade-left'>
+          <p data-aos='fade-right'>
             The first element in hashes must be the given transaction's sibling
             transaction's ID. This and the given transaction's txid are hashed
             to calculate the parent hash in the merkle tree, which is then
@@ -113,7 +113,7 @@ const HowItWorks = () => {
         <h4 data-aos='fade-right'>
           Applications that use the clarity bitcoin library:
         </h4>
-        <p data-aos='fade-left'>
+        <p data-aos='fade-right'>
           <strong>CATARAMAN SWAP</strong>{' '}
           <a
             href='https://docs.catamaranswaps.org/en/latest/'
@@ -124,7 +124,7 @@ const HowItWorks = () => {
           </a>{' '}
           catamaran swap is using the concat method.
         </p>
-        <h3 data-aos='fade-left'>
+        <h3 data-aos='fade-right'>
           MAGIC BRIDGE (LINK AND ABOUT ) is using the parse method <br /> ZEST
           PROTOCOL(LINK AND ABOUT )
         </h3>
