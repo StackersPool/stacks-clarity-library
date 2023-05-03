@@ -16,13 +16,13 @@ const HowItWorks = () => {
   return (
     <main className='how-it-works'>
       <h1 className='title'>
-        How To Verify <span>BITCOIN PROOFS</span>
+        How To Verify <span>Bitcoin Transactions</span>
       </h1>
       <div className='bitcoin-proofs'>
         <div className='img'>
           <img
             src={bitcoinVerification}
-            alt='how to verify bitcoin proofs'
+            alt='how to verify bitcoin transactions'
             data-aos='fade-up'
           />
         </div>

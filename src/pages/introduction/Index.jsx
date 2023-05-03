@@ -60,8 +60,8 @@ const Introduction = () => {
 
       <article className='merkle-proof' data-aos='fade-right'>
         <p>
-          This library explains how stacks parses bitcoin transactions and block
-          headers and verifies merkle proofs from the bitcoin chain .
+          This page explains how the library parses bitcoin transactions and block
+          headers and verifies merkle proofs from the bitcoin chain.
         </p>
         <div className='img'>
           <img src={blockchain} alt='blockchain' />
