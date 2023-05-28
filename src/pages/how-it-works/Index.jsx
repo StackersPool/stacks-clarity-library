@@ -27,10 +27,7 @@ const HowItWorks = () => {
           />
         </div>
         <p data-aos='fade-right'>
-          <strong>Bitcoin transaction</strong> data is pulled from a post-segwit
-          Bitcoin node using the RPC endpoint. The node must be an archive node.
-          Initially, it assumes that it is using a GetBlock node, since they
-          offer a free tier node that meets all of the requirements.
+          <strong>CLARITY BITCOIN LIBRARY </strong>The Clarity Bitcoin Library is a tool that examines and interprets bitcoin transactions and block headers. It checks whether a bitcoin transaction was actually sent (mined) on the bitcoin chain. The main purpose for this contract is to verify that a tx (transaction) was mined in a bitcoin block.
         </p>
       </div>
 
@@ -39,37 +36,24 @@ const HowItWorks = () => {
           <img src={merkleTree} alt='merkle tree node' />
         </div>
         <p data-aos='fade-right'>
-          A <span>merkle proof</span> for the transaction is created using the
-          <span> merkle tree</span> node module. In the future, it may be
-          possible to eliminate this dependency by calling the{' '}
-          <strong>gettxoutproof</strong>
-          endpoint of<strong> Bitcoin RPC</strong>.
+        The library (contract) is written in Clarity language of the Stacks blockchain and it uses a function (though they are about 43 other functions) to verify if the tx (transaction) was mined in a certain block, in order of us to verify a tx then this follow steps must be made:
         </p>
         <br />
         <p data-aos='fade-right'>
-          In order for the Stacks network to verify a proof, it needs to know
-          the Stacks block height that corresponds to the block where the
-          transaction of interest was recorded on the Bitcoin network.
+        The function first verifies that the block-header data is equal to the block data; if it's true then it goes to the second part of the verification.
         </p>
         <br />
         <p data-aos='fade-right'>
-          The hash values of Bitcoin block headers are available in Clarity
-          contracts via <strong>get-burn-block-info</strong> ?. Then, it remains
-          to just verify hashes of merkle trees, transactions and block headers.
-          There are two main methods which are:
+        Secondly after the block header has been verified,the function now verifies if the merkle-proof matches the block's merkle root. There are two main methods which are:
         </p>
         <br />
         <ol data-aos='fade-up'>
           <li>
-            <strong>Was TX Mined:</strong> This is a top-level verification code
-            to determine whether or not a bitcoin transaction was mined in a
-            prior bitcoin block. It takes the block header and block height, the
-            transaction, and merkle tree proof, and determines that:
+            <strong>Was TX Mined:</strong>  This read-only function is a function to confirm if a bitcoin transaction was mined or sent to a prior bitcoin block, it takes the bitcoin-header and height ,the transaction, and a merkle proof, and determines that:
           </li>
           <ul>
             <li>
-              the block header corresponds to the block that was mined at the
-              given bitcoin height
+            The block header corresponds to the block that was mined at the given Bitcoin height
             </li>
             <li>
               The transaction's merkle proof links it to the block header's
@@ -96,19 +80,23 @@ const HowItWorks = () => {
           </p>
           <br />
           <li data-aos='fade-right'>
-            <strong>Parse Block Header</strong>: This method parses a bitcoin
-            block header and returns a tuple structured as followed on success,
-            the tuple data includes:
+            <strong>WAS-TX-MINED-COMPACT</strong>:This read-only function is a function
+            to confirm if a bitcoin transaction was mined or sent to a prior bitcoin block,
+            it takes the bitcoin-header and height ,the transaction, and a merkle proof, and determines that:
+
           </li>
           <ul data-aos='fade-up'>
-            <li>Block Version</li>
-            <li>Parent Block Hash</li>
-            <li>Merkle root for all this block's transactions</li>
-            <li>UNIX epoch timestamp of this block, in seconds</li>
-            <li>Compact block difficulty representation</li>
-            <li>PoW solution</li>
+            <li>the block header corresponds to the block that was mined at the given Bitcoin height</li>
+            <li>The transaction's merkle proof matches the block header's merkle root.</li>
           </ul>
         </ol>
+        <p data-aos='fade-right'>
+        Returns a boolean value false message if these requirements are not met.
+        
+          </p>
+          <p data-aos='fade-right'>
+          Note: This read-only function is a function similar to the function above but the inputs are different and also the helper functions are a little bit different.
+          </p>
         <br />
         <h4 data-aos='fade-right'>
           Applications that use the clarity bitcoin library:
